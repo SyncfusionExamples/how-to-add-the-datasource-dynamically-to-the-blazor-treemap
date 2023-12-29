@@ -1,0 +1,74 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.TreeMap
+@using System.Collections.ObjectModel;
+
+<SfTreeMap @ref="@_chart" DataSource="Sublist" Width="450px"
+           WeightValuePath="Value"
+           TValue="Country"
+           Palette='new string[] { "#8ecae6", "#219ebc", "#00b4d8", "#8ac926", "#06d6a0",
+            "#ffd166", "#90be6d", "#f8961e", "#70d6ff", "#ffb600",
+            "#a1ff0a", "#ff5c8a", "#909580", "#00a5cf", "#bf0603"}'>
+
+    <TreeMapLeafItemSettings LabelPath="Name"></TreeMapLeafItemSettings>
+</SfTreeMap>
+
+<div class="row">
+    <button @onclick="ShowList1" style="width:150px">Show List 1</button> &nbsp; &nbsp;
+    <button @onclick="ShowList2" style="width:150px">Show List 2</button>
+</div>
+
+
+@code {
+    private SfTreeMap<Country>? _chart;
+    public ObservableCollection<Country> Sublist { get; set; }
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        Sublist = ListOne;
+    }
+
+
+    public void ShowList1()
+    {
+        Sublist = ListOne;
+    }
+
+    public void ShowList2()
+    {
+        Sublist = ListTwo;
+    }
+
+
+    public class Country
+    {
+        public string Name { get; set; }
+        public int Value { get; set; }
+    }
+    public ObservableCollection<Country> ListOne = new ObservableCollection<Country> {
+        new Country  {Name="United States", Value=17946 },
+        new Country  {Name="China", Value=10866 },
+        new Country  {Name="Japan", Value=4123 },
+        new Country  {Name="Germany", Value=3355 },
+        new Country  {Name="United Kingdom", Value=2848 },
+        new Country  {Name="France", Value=2421 },
+        new Country  {Name="India", Value=2073 },
+        new Country  {Name="Italy", Value=1814 },
+        new Country  {Name="Brazil", Value=1774 },
+        new Country  {Name="Canada", Value=1550 }
+    };
+
+
+    public ObservableCollection<Country> ListTwo = new ObservableCollection<Country> {
+        new Country  {Name="Australia", Value=85214},
+        new Country  {Name="New Zealand", Value=8412},
+        new Country  {Name="Kenya", Value=410},
+        new Country  {Name="Brasil", Value=2848 },
+        new Country  {Name="Mexico", Value=7414},
+        new Country  {Name="Canada", Value=2073 },
+        new Country  {Name="Iran", Value=814 },
+        new Country  {Name="Pakistan", Value=21774 },
+        new Country  {Name="Mongolia", Value=81550 },
+    };
+}​
